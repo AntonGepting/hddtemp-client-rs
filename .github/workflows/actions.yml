@@ -25,6 +25,11 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Install hddtemp
+        run: |
+          sudo apt-get update
+          sudo apt-get -y install hddtemp
+
       - name: Build
         run: cargo build --verbose
 
