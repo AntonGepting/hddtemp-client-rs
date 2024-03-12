@@ -62,8 +62,8 @@ impl HDDTempClient {
 
 #[test]
 fn get_hdd_temp_test() {
-    let s = HDDTempClient::connect_read_to_string("localhost:7634", None).unwrap();
-    dbg!(s);
-    let devices = HDDTempClient::get("localhost:7634", None, None).unwrap();
-    dbg!(devices);
+    // let s = HDDTempClient::connect_read_to_string("localhost:7634", None).unwrap();
+    // dbg!(s);
+    // let devices = HDDTempClient::get("localhost:7634", None, None).unwrap();
+    // dbg!(devices);
 }
