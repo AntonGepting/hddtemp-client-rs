@@ -23,27 +23,31 @@ impl HDDTempParser {
         separator: Option<char>,
     ) -> Result<BTreeMap<String, HDDTempData>, Error> {
         let s = s.as_ref();
-        let len = s.len();
         let separator = separator.unwrap_or(SEPARATOR_DEFAULT);
         let double_separator = format!("{}{}", separator, separator);
 
         // if first and last chars are separators
-        if s.starts_with(separator) && s.ends_with(separator) {
-            let s = &s[1..len - 1]; // remove the first and the last separator
+        if let Some(s) = s.strip_prefix(separator) {
+            if let Some(s) = s.strip_suffix(separator) {
+                let lines: Vec<&str> = s.split(&double_separator).collect();
+                let mut devices: BTreeMap<String, HDDTempData> = BTreeMap::new();
 
-            let lines: Vec<&str> = s.split(&double_separator).collect();
-            let mut devices: BTreeMap<String, HDDTempData> = BTreeMap::new();
+                for line in lines {
+                    let (device, data) = HDDTempParser::parse_device(line, Some(separator))?;
+                    devices.insert(device, data);
+                }
 
-            for line in lines {
-                let (device, data) = HDDTempParser::parse_device(line, Some(separator))?;
-                devices.insert(device, data);
+                Ok(devices)
+            } else {
+                Err(Error::new(
+                    ErrorKind::InvalidData,
+                    "Trailing separator not found.",
+                ))
             }
-
-            Ok(devices)
         } else {
             Err(Error::new(
                 ErrorKind::InvalidData,
-                "Starting or trailing separator not found.",
+                "Starting separator not found.",
             ))
         }
     }
