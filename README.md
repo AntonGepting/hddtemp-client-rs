@@ -1,17 +1,15 @@
 # hddtemp_client
 
 [![Build Status](https://github.com/AntonGepting/hddtemp-client-rs/actions/workflows/actions.yml/badge.svg)](https://github.com/AntonGepting/hddtemp-client-rs/actions)
-[![Crates.io](https://img.shields.io/crates/v/hddtemp_client.svg)](https://crates.io/crates/hddtemp_client)
-[![Documentation](https://docs.rs/hddtemp_client/badge.svg)](https://docs.rs/hddtemp_client)
+<!-- [![Crates.io](https://img.shields.io/crates/v/hddtemp_client.svg)](https://crates.io/crates/hddtemp_client) -->
+<!-- [![Documentation](https://docs.rs/hddtemp_client/badge.svg)](https://docs.rs/hddtemp_client) -->
 
 
 ## Description
 
 `hddtemp_client` is a library for communication with
 [hddtemp](https://github.com/guzu/hddtemp/) written in
-[Rust](https://www.rust-lang.org/) programming language.  The crate
-documentation can be found on the [docs.rs](https://docs.rs/hddtemp_client)
-page.
+[Rust](https://www.rust-lang.org/) programming language.
 
 
 ## Usage
@@ -36,8 +34,6 @@ page.
     ### Example 1
 
     ```
-    extern crate hddtemp_client;
-
     use hddtemp_client::HDDTempClient;
 
     let devices = HDDTempClient::get("localhost:7634", None, None).unwrap();
@@ -54,7 +50,4 @@ page.
 
 ## See also
 
-- [Rust programming language](https://www.rust-lang.org/)
-- [crates.io](https://www.crates.io/)
-- [docs.rs](https://www.docs.rs/)
-- [hddtemp service](https://github.com/guzu/hddtemp/)
+- [hddtemp](https://github.com/guzu/hddtemp/)
